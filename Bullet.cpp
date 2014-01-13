@@ -14,8 +14,6 @@ Bullet::Bullet(ofVec2f pos, ofVec2f dir){
     this->radius = 10;
     this->hasfired = false;
     
-    printf("pos.x: %0.2f x %0.2f\n", this->pos.x, this->pos.y);
-    
     this->fire();
 }
 

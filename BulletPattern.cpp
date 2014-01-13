@@ -21,9 +21,16 @@ void BulletPattern::start(){
 }
 
 void BulletPattern::update(float deltatime){
-    for(vector<Bullet>::iterator it = bullets.begin(); it != bullets.end(); it++){
+    vector<Bullet>::iterator it = bullets.begin();
+    while(it != bullets.end()){
         it->update(deltatime);
+        if (!it->is_onscreen()) {
+            it = bullets.erase(it);
+        } else {
+            ++it;
+        }
     }
+    cout << bullets.size() << endl;
     
     if (!this->isrunning) {
         return;

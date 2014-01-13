@@ -20,4 +20,5 @@ public:
     
     virtual void draw() = 0;
     virtual void update(float deltatime);
+    bool is_onscreen();
 };
