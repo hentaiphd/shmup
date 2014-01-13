@@ -24,5 +24,6 @@ public:
     Bullet(ofVec2f pos, ofVec2f dir);
     void fire();
     void draw();
+    void mouseMoved(int x, int y);
     void update(float deltatime);
 };

@@ -25,6 +25,8 @@ void Bullet::fire(){
     this->hasfired = true;
 }
 
+void Bullet::mouseMoved(int x, int y) {}
+
 void Bullet::update(float deltatime){
     if(this->hasfired){
         GameObject::update(deltatime);

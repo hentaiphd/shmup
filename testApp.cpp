@@ -1,23 +1,27 @@
 #include "testApp.h"
 #include "CyclicEllipseBulletPattern.h"
 #include "RadialBulletPattern.h"
+#include "Player.h"
 
 int loopy;
 BulletPattern *pattern, *pattern2;
+Player *player;
 
 //--------------------------------------------------------------
 void testApp::setup(){
     ofSeedRandom();
     loopy = 20;
+    player = new Player(kControlTypeKeyboard);
     pattern = new CyclicEllipseBulletPattern(30, ofVec2f(100,100));
     pattern2 = new RadialBulletPattern(30, ofVec2f(200, 200));
 }
 
 //--------------------------------------------------------------
 void testApp::update(){
-    pattern2->update(ofGetLastFrameTime());
-    pattern->update(ofGetLastFrameTime());
-    pattern->origin = ofVec2f(mouseX,mouseY);
+    float deltatime = ofGetLastFrameTime();
+    pattern2->update(deltatime);
+    pattern->update(deltatime);
+    player->update(deltatime);
 }
 
 //--------------------------------------------------------------
@@ -30,26 +34,26 @@ void testApp::draw(){
     ofFill();
     pattern2->draw();
     pattern->draw();
+    player->draw();
 }
 
 //--------------------------------------------------------------
 void testApp::keyPressed(int key){
-
+    player->keyPressed(key);
 }
 
 //--------------------------------------------------------------
 void testApp::keyReleased(int key){
-
+    player->keyReleased(key);
 }
 
 //--------------------------------------------------------------
 void testApp::mouseMoved(int x, int y){
-
+    player->mouseMoved(x, y);
 }
 
 //--------------------------------------------------------------
 void testApp::mouseDragged(int x, int y, int button){
-    
     
 }
 
