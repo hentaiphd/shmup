@@ -30,7 +30,6 @@ void BulletPattern::update(float deltatime){
             ++it;
         }
     }
-    cout << bullets.size() << endl;
     
     if (!this->isrunning) {
         return;
