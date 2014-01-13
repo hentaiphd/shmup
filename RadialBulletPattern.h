@@ -16,11 +16,6 @@
 
 class RadialBulletPattern : public BulletPattern{
 public:
-    float bulletspeed;
-    
-    RadialBulletPattern(ofVec2f origin, float bulletspeed, float volley_timeout);
+    RadialBulletPattern(int count, ofVec2f origin);
     void volley();
-    
-private:
-    float lastangle;
 };

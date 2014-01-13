@@ -1,18 +1,21 @@
 #include "testApp.h"
+#include "CyclicEllipseBulletPattern.h"
 #include "RadialBulletPattern.h"
 
 int loopy;
-RadialBulletPattern *pattern;
+BulletPattern *pattern, *pattern2;
 
 //--------------------------------------------------------------
 void testApp::setup(){
     ofSeedRandom();
     loopy = 20;
-    pattern = new RadialBulletPattern(ofVec2f(100,100),.05,.2);
+    pattern = new CyclicEllipseBulletPattern(30, ofVec2f(100,100));
+    pattern2 = new RadialBulletPattern(30, ofVec2f(200, 200));
 }
 
 //--------------------------------------------------------------
 void testApp::update(){
+    pattern2->update(ofGetLastFrameTime());
     pattern->update(ofGetLastFrameTime());
     pattern->origin = ofVec2f(mouseX,mouseY);
 }
@@ -25,6 +28,7 @@ void testApp::draw(){
     int b = ofMap(mouseX, 0, ofGetWidth(), 0, 255);
     ofSetColor(r, g, b);
     ofFill();
+    pattern2->draw();
     pattern->draw();
 }
 

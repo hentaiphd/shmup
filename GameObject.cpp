@@ -9,7 +9,7 @@
 #include "GameObject.h"
 
 void GameObject::update(float deltatime){
-    this->pos += this->dir;
+    this->pos += this->dir*ceil(deltatime/MIN_DELTA);
 }
 
 bool GameObject::is_onscreen(){

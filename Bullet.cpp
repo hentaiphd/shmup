@@ -11,7 +11,7 @@
 Bullet::Bullet(ofVec2f pos, ofVec2f dir){
     this->pos = pos;
     this->dir = dir;
-    this->radius = 10;
+    this->radius = 8;
     this->hasfired = false;
     
     this->fire();

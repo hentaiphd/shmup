@@ -14,6 +14,8 @@
 
 #endif /* defined(__emptyExample__GameObject__) */
 
+#define MIN_DELTA .03
+
 class GameObject{
 public:
     ofVec2f pos, dir;
