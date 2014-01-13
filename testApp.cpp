@@ -3,24 +3,26 @@
 #include "RadialBulletPattern.h"
 #include "Player.h"
 
-int loopy;
-BulletPattern *pattern, *pattern2;
+bool moving = false;
+vector<BulletPattern*> patterns;
+vector<BulletPattern*>::iterator cur_pattern;
 Player *player;
 
 //--------------------------------------------------------------
 void testApp::setup(){
-    ofSeedRandom();
-    loopy = 20;
     player = new Player(kControlTypeKeyboard);
-    pattern = new CyclicEllipseBulletPattern(30, ofVec2f(100,100));
-    pattern2 = new RadialBulletPattern(30, ofVec2f(200, 200));
+    patterns.push_back(new CyclicEllipseBulletPattern(30, ofVec2f(400,200)));
+    patterns.push_back(new RadialBulletPattern(20, ofVec2f(400, 200), .1, .2));
+    cur_pattern = patterns.begin();
 }
 
 //--------------------------------------------------------------
 void testApp::update(){
     float deltatime = ofGetLastFrameTime();
-    pattern2->update(deltatime);
-    pattern->update(deltatime);
+    (*cur_pattern)->update(deltatime);
+    if (moving) {
+        (*cur_pattern)->origin.x = 400+100*sin(ofGetElapsedTimef());
+    }
     player->update(deltatime);
 }
 
@@ -32,14 +34,22 @@ void testApp::draw(){
     int b = ofMap(mouseX, 0, ofGetWidth(), 0, 255);
     ofSetColor(r, g, b);
     ofFill();
-    pattern2->draw();
-    pattern->draw();
+    (*cur_pattern)->draw();
     player->draw();
 }
 
 //--------------------------------------------------------------
 void testApp::keyPressed(int key){
     player->keyPressed(key);
+    if (key == ' ') {
+        if (cur_pattern == patterns.end() - 1) {
+            cur_pattern = patterns.begin();
+        } else {
+            cur_pattern++;
+        }
+    } else if (key == 'z') {
+        moving = moving ? false : true;
+    }
 }
 
 //--------------------------------------------------------------

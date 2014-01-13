@@ -13,6 +13,11 @@ RadialBulletPattern::RadialBulletPattern(int count, ofVec2f origin)
 {
 }
 
+RadialBulletPattern::RadialBulletPattern(int count, ofVec2f origin, float bulletspeed, float volley_timeout)
+: BulletPattern(count, origin, bulletspeed, volley_timeout)
+{
+}
+
 void RadialBulletPattern::volley(){
     static float angle = 1;
     float radius = 20;
@@ -23,5 +28,5 @@ void RadialBulletPattern::volley(){
         bullets.push_back(*b);
         angle += (2*PI)/this->count;
     }
-    angle++;
+    angle += 2;
 }

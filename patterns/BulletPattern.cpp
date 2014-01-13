@@ -9,15 +9,15 @@
 #include "BulletPattern.h"
 
 BulletPattern::BulletPattern(){
-    this->init(30, ofVec2f(0,0), .05, 1);
+    this->init(30, ofVec2f(0,0), .1, .6);
 }
 
 BulletPattern::BulletPattern(int count) {
-    this->init(count, ofVec2f(0,0), .05, 1);
+    this->init(count, ofVec2f(0,0), .1, .6);
 }
 
 BulletPattern::BulletPattern(int count, ofVec2f origin) {
-    this->init(count, origin, .05, 1);
+    this->init(count, origin, .1, .6);
 }
 
 BulletPattern::BulletPattern(int count, ofVec2f origin, float bulletspeed, float volley_timeout){
