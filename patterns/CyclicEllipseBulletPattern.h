@@ -17,5 +17,6 @@
 class CyclicEllipseBulletPattern : public BulletPattern{
 public:
     CyclicEllipseBulletPattern(int count, ofVec2f origin);
+    CyclicEllipseBulletPattern(int count, ofVec2f origin, float bulletspeed, float volley_timeout);
     void volley();
 };

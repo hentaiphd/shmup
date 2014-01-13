@@ -1,6 +1,8 @@
 #include "testApp.h"
 #include "CyclicEllipseBulletPattern.h"
 #include "RadialBulletPattern.h"
+#include "FanOutBulletPattern.h"
+#include "OscillatingFanOutBulletPattern.h"
 #include "Player.h"
 
 bool moving = false;
@@ -10,9 +12,12 @@ Player *player;
 
 //--------------------------------------------------------------
 void testApp::setup(){
+    ofVec2f origin = ofVec2f(400,200);
     player = new Player(kControlTypeKeyboard);
-    patterns.push_back(new CyclicEllipseBulletPattern(30, ofVec2f(400,200)));
-    patterns.push_back(new RadialBulletPattern(20, ofVec2f(400, 200), .1, .2));
+    patterns.push_back(new CyclicEllipseBulletPattern(30, origin, 5, .3));
+    patterns.push_back(new RadialBulletPattern(20, origin, 10, .085));
+    patterns.push_back(new FanOutBulletPattern(10, origin, 5, .2, PI/2, ofVec2f(0, 1)));
+    patterns.push_back(new OscillatingFanOutBulletPattern(10, origin, 5, .2, ofVec2f(0, 1)));
     cur_pattern = patterns.begin();
 }
 
