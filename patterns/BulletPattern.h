@@ -15,9 +15,12 @@
 
 #endif /* defined(__emptyExample__BulletPattern__) */
 
+class Player;
+
 class BulletPattern{
 public:
     vector<Bullet> bullets;
+    vector<Player*>* players;
     ofVec2f origin;
     float volley_timeout, bulletspeed;
     bool isrunning;
@@ -31,6 +34,7 @@ public:
     void draw();
     void update(float deltatime);
     void start();
+    void setPlayersReference(vector<Player*>* players);
     
 private:
     float frame_lifetime, last_volley;

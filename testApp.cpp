@@ -3,11 +3,13 @@
 #include "RadialBulletPattern.h"
 #include "FanOutBulletPattern.h"
 #include "OscillatingFanOutBulletPattern.h"
+#include "TargetedBulletPattern.h"
 #include "Player.h"
 
 bool moving = false;
 vector<BulletPattern*> patterns;
 vector<BulletPattern*>::iterator cur_pattern;
+vector<Player*> players;
 Player *player;
 
 //--------------------------------------------------------------
@@ -16,9 +18,17 @@ void testApp::setup(){
     player = new Player(kControlTypeKeyboard);
     patterns.push_back(new CyclicEllipseBulletPattern(30, origin, 5, .3));
     patterns.push_back(new RadialBulletPattern(20, origin, 10, .085));
+    patterns.push_back(new TargetedBulletPattern(20, origin, 10, .085));
     patterns.push_back(new FanOutBulletPattern(10, origin, 5, .2, PI/2, ofVec2f(0, 1)));
     patterns.push_back(new OscillatingFanOutBulletPattern(10, origin, 5, .2, ofVec2f(0, 1)));
     cur_pattern = patterns.begin();
+    
+    players.push_back(player);
+    
+    for(vector<BulletPattern*>::iterator it = patterns.begin(); it != patterns.end(); ++it) {
+        BulletPattern* current = (BulletPattern *)*it;
+        current->setPlayersReference(&players);
+    }
 }
 
 //--------------------------------------------------------------

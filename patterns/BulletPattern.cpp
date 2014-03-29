@@ -7,6 +7,7 @@
 //
 
 #include "BulletPattern.h"
+#include "Player.h"
 
 BulletPattern::BulletPattern(){
     this->init(30, ofVec2f(0,0), .1, .6);
@@ -37,6 +38,11 @@ void BulletPattern::init(int count, ofVec2f origin, float bulletspeed, float vol
 
 void BulletPattern::start(){
     this->isrunning = true;
+}
+
+void BulletPattern::setPlayersReference(vector<Player*>* players) {
+    cout << ((Player *)(*(players)).front())->pos.x << endl;
+    this->players = players;
 }
 
 void BulletPattern::update(float deltatime){
